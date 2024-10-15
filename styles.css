@@ -1,0 +1,48 @@
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif; /* Modern font family */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    font-size: 18px; /* Increase the base font size */
+}
+
+header {
+    background-color: #FFB6C1; /* Light pink background */
+    color: white; /* White text color */
+    text-align: center; /* Center-align text */
+    padding: 20px; /* Add padding */
+    font-size: 32px; /* Increase font size for the header */
+    font-family: 'Georgia', serif; /* Use a serif font for the header */
+}
+
+nav ul li a {
+    display: block; /* Display links as block elements */
+    color: white; /* White text color */
+    text-align: center; /* Center-align text */
+    padding: 14px 16px; /* Add padding */
+    text-decoration: none; /* Remove underline from links */
+    font-size: 18px; /* Increase font size for navigation text */
+    font-family: 'Verdana', sans-serif; /* Use a different font for navigation */
+}
+
+.content {
+    background-image: url("img/pink.gif"); /* Background image file path should be specified here */
+    background-size: cover; /* Cover the entire area with the background */
+    min-height: 500px; /* Set a minimum height */
+    color: #333; /* Dark gray text color */
+    text-align: center; /* Center-align text */
+    padding: 20px; /* Add padding */
+    font-size: 20px; /* Increase font size for content text */
+    font-family: 'Verdana', sans-serif; /* Use a different font for content */
+}
+
+footer {
+    text-align: center; /* Center-align footer text */
+    padding: 10px; /* Add padding */
+    background-color: #333; /* Dark gray background */
+    color: white; /* White text color */
+    position: relative; /* Relative positioning */
+    bottom: 0; /* Place at the bottom of the page */
+    width: 100%; /* Cover the full width */
+    font-size: 16px; /* Set font size for footer text */
+    font-family: 'Arial', sans-serif; /* Use a font for footer text */
+}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map - Beyza Oren</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" /> <!-- Link to Leaflet CSS for map styling -->
+    <style>
+        body {
+            font-family: 'Georgia', sans-serif; /* Font style for the entire page */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            background-image: url("img/pink.gif"); /* Background image */
+            background-size: cover; /* Cover the entire background */
+            background-position: center; /* Center the background image */
+            color: white; /* Set text color to white */
+            height: 100vh; /* Full viewport height */
+            display: flex; /* Use flexbox for layout */
+            flex-direction: column; /* Align items vertically */
+        }
+        nav {
+            background-color: rgba(51, 51, 51, 0.8); /* Semi-transparent dark gray background for navigation */
+            color: white; /* White text color */
+            overflow: hidden; /* Clear floats in navigation */
+        }
+        nav ul {
+            list-style-type: none; /* Remove bullet points from the list */
+            padding: 0; /* Remove padding */
+            margin: 0; /* Remove margin */
+        }
+        nav ul li {
+            float: left; /* Align list items to the left */
+        }
+        nav ul li a {
+            display: block; /* Set links to block display */
+            color: white; /* White text color for links */
+            text-align: center; /* Center align text within links */
+            padding: 14px 16px; /* Add padding for links */
+            text-decoration: none; /* Remove underline from links */
+        }
+        nav ul li a:hover {
+            background-color: #ddd; /* Light gray background on hover */
+            color: black; /* Change text color to black on hover */
+        }
+        main {
+            flex: 1; /* Allow main content to grow */
+            text-align: center; /* Center align text */
+            padding: 20px; /* Add padding around the content */
+        }
+        #map {
+            height: 100%; /* Set map height to 100% of the parent container */
+            width: 100%; /* Set map width to 100% of the parent container */
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li> <!-- Link to Home page -->
+            <li><a href="about.html">About Me</a></li> <!-- Link to About Me page -->
+            <li><a href="work.html">Work Experience</a></li> <!-- Link to Work Experience page -->
+            <li><a href="skills.html">Skills</a></li> <!-- Link to Skills page -->
+            <li><a href="contact.html">Contact</a></li> <!-- Link to Contact page -->
+            <li><a href="hobbies.html">Hobbies</a></li> <!-- Link to Hobbies page -->
+        </ul>
+    </nav>
+
+    <main>
+        <h1>Cities I've been to before</h1> <!-- Title for the main content -->
+        <div id="map"></div> <!-- Div element for the map -->
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Beyza Oren. All rights reserved.</p> <!-- Copyright notice -->
+    </footer>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script> <!-- Link to Leaflet JS for map functionality -->
+    <script>
+        // Initialize the map and set its view to Turkey's coordinates
+        var map = L.map('map').setView([39.9334, 32.8597], 6); // Turkey coordinates with zoom level 6
+
+        // Add OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19, // Maximum zoom level
+            attribution: '© OpenStreetMap' // Attribution for the map
+        }).addTo(map);
+
+        // Coordinates for cities visited
+        var locations = [
+            {name: "Ankara", coords: [39.9334, 32.8597]},
+            {name: "İstanbul", coords: [41.0082, 28.9784]},
+            {name: "Sivas", coords: [39.7476, 37.0172]},
+            {name: "Tokat", coords: [40.3168, 36.5500]},
+            {name: "Samsun", coords: [41.2865, 36.33]},
+            {name: "Antalya", coords: [36.8969, 30.7133]},
+            {name: "Mersin", coords: [36.8005, 34.6330]},
+            {name: "Zonguldak", coords: [41.4482, 31.7970]},
+            {name: "Giresun", coords: [40.9126, 38.4000]},
+            {name: "Ordu", coords: [40.9830, 37.8798]},
+            {name: "Konya", coords: [37.8714, 32.4846]},
+            {name: "Kayseri", coords: [38.4192, 35.6700]},
+            {name: "Yozgat", coords: [39.8180, 34.8116]},
+            {name: "Amasya", coords: [40.6539, 35.8313]},
+            {name: "Çorum", coords: [40.5713, 34.9537]},
+            {name: "Eskişehir", coords: [39.7768, 30.5206]},
+            {name: "Kütahya", coords: [39.4194, 29.9807]},
+            {name: "Mostar", coords: [43.3438, 17.8103]},
+            {name: "Saraybosna", coords: [43.8486, 18.3564]},
+            {name: "Budva", coords: [42.2818, 18.8400]},
+            {name: "Kotor", coords: [42.4244, 18.7700]},
+            {name: "Perast", coords: [42.486944, 18.699167]}, // Updated
+            {name: "Stevi Stefan", coords: [42.2580, 18.8547]},
+            {name: "Nevşehir", coords: [38.6242, 34.7345]}, // Added
+            {name: "Isparta", coords: [37.7649, 30.5559]}, // Added
+            {name: "Afyonkarahisar", coords: [38.7568, 30.5434]}, // Added
+            {name: "Kırıkkale", coords: [39.8413, 33.5155]}, // Added
+            {name: "Kırşehir", coords: [39.1455, 34.1703]} // Added
+        ];
+
+        // Mark cities on the map
+        locations.forEach(function(location) {
+            var marker = L.marker(location.coords).addTo(map); // Create a marker for each location
+            marker.bindPopup('<b>' + location.name + '</b>').openPopup(); // Bind a popup to each marker with the city name
+        });
+    </script>
+</body>
+</html>
